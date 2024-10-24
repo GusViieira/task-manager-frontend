@@ -1,5 +1,7 @@
+const url = "http://192.168.1.89:8080/task";
+
 async function obterTasks() {
-  const response = await fetch("http://192.168.1.90:8080/task");
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`${response.status} - ${response.statusText}`);
   }
@@ -8,7 +10,7 @@ async function obterTasks() {
 }
 
 async function incluirTask(data) {
-  const response = await fetch("http://192.168.1.90:8080/task", {
+  const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -20,7 +22,7 @@ async function incluirTask(data) {
 }
 
 async function editTask(data, id) {
-  const response = await fetch(`http://192.168.1.90:8080/task/${id}`, {
+  const response = await fetch(`${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
@@ -32,7 +34,7 @@ async function editTask(data, id) {
 }
 
 async function excluirTask(id) {
-  const response = await fetch(`http://192.168.1.90:8080/task/${id}`, {
+  const response = await fetch(`${url}/${id}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
